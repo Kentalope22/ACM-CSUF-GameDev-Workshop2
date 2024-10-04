@@ -22,31 +22,38 @@ public class PlayerMovement : MonoBehaviour
         originalScale = transform.localScale.x;
     }
     
-    
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
-        if(Input.GetKey(KeyCode.A)){
+        CheckSpriteFlip();
+        CheckIfGrounded();
+        //TODO: Check for user input to move player left or right
+        //Hint: Use Input.GetKey(...)
+        /*
+        
+        if(...){
             anim.SetBool("isRunning", true);
             moveDirection = -1;
-        } else if(Input.GetKey(KeyCode.D)){
+        } else if(...){
             anim.SetBool("isRunning", true);
             moveDirection = 1;
         } else {
             anim.SetBool("isRunning", false);
             moveDirection = 0;
         }
+        */
 
-        CheckSpriteFlip();
-        CheckIfGrounded();
 
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
+        //TODO: Check for user input to make player jump + logic for when player should be able to jump
+        //Hint: Use Input.GetKey(...)
+        /*
+        
+        if(...){
             Jump();
         }
+        */     
+
+        //CHALLENGE 1: Can you add a double jump mechanic?
+        //Challenge 2: Can you make a sprint mechanic that increases player movement when holding a key?
     }
 
     void FixedUpdate(){
