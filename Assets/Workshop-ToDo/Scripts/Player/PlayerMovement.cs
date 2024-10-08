@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     private bool isGrounded;
+    private int jumpCount;
     
 
     private void Awake() {
@@ -26,6 +27,35 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckSpriteFlip();
         CheckIfGrounded();
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            anim.SetBool("isRunning", true);
+            moveDirection = -1;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            anim.SetBool("isRunning", true);
+            moveDirection = 1;
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
+            moveDirection = 0;
+        }
+
+        if (jumpCount > 0 && Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+            jumpCount--;
+
+        }
+
+        if (jumpCount == 0 && isGrounded)
+        {
+            jumpCount = 2;
+
+        }
         //TODO: Check for user input to move player left or right
         //Hint: Use Input.GetKey(...)
         /*
@@ -50,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         if(...){
             Jump();
         }
-        */     
+        */
 
         //CHALLENGE 1: Can you add a double jump mechanic?
         //Challenge 2: Can you make a sprint mechanic that increases player movement when holding a key?
